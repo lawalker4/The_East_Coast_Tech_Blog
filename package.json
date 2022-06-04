@@ -8,5 +8,24 @@
     "express-session": "^1.17.3",
     "mysql2": "^2.3.3",
     "sequelize": "^6.20.1"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "the_east_coast_tech_blog",
+  "description": "Model-View-Controller (MVC) Challenge: Tech Blog",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lawalker4/The_East_Coast_Tech_Blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lawalker4/The_East_Coast_Tech_Blog/issues"
+  },
+  "homepage": "https://github.com/lawalker4/The_East_Coast_Tech_Blog#readme"
 }
