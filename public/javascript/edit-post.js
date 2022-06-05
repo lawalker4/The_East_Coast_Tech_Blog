@@ -29,4 +29,4 @@ if(response.ok){
 document.querySelector('.edit-post-form').addEventListener('submit', editFormHandler);
 
 
-}
+
