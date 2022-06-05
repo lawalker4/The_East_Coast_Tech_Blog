@@ -74,6 +74,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', withAuth, (req, res) => {
+    console.log(req.body)
     Post.create({
         title: req.body.title,
         post_text: req.body.post_text,
@@ -86,46 +87,47 @@ router.post('/', withAuth, (req, res) => {
         });
 });
 
-    router.put('/:id', withAuth, (req, res) => {
-        Post.update(
-            {
-                title: req.body.title,
-                post_text: req.body.post_text
-            },
-            {
-                where: {
-                    id: req.params.id
-                }
-            }
-        )
-            .then(dbPostData => {
-                if (!dbPostData) {
-                    res.status(404).json({ message: "No post found" });
-                    return;
-                }
-                res.json(dbPostData);
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            });
-    }); ('/:id', withAuth, (req, res) => {
-        Post.destory({
+router.put('/:id', withAuth, (req, res) => {
+    Post.update(
+        {
+            title: req.body.title,
+            post_text: req.body.post_text
+        },
+        {
             where: {
                 id: req.params.id
             }
+        }
+    )
+        .then(dbPostData => {
+            if (!dbPostData) {
+                res.status(404).json({ message: "No post found" });
+                return;
+            }
+            res.json(dbPostData);
         })
-            .then(dbPostData => {
-                if (!dbPostData) {
-                    res.status(404).json({ message: 'No post found with this id' });
-                    return;
-                }
-                res.json(dbPostData);
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            });
-    });
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 
-    module.exports = router; 
+}); ('/:id', withAuth, (req, res) => {
+    Post.destory({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then(dbPostData => {
+            if (!dbPostData) {
+                res.status(404).json({ message: 'No post found with this id' });
+                return;
+            }
+            res.json(dbPostData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+module.exports = router; 

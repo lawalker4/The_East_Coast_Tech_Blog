@@ -75,6 +75,35 @@ router.post('/login', (req, res) => {
 
 //POST logout
 
+router.post('/login', (req, res) => {
+    // expects {email: 'lernantino@gmail.com', password: 'password1234'}
+    User.findOne({
+        where: {
+            email: req.body.email
+        }
+    }).then(dbUserData => {
+        if (!dbUserData) {
+            res.status(400).json({ message: 'No user with that email address!' });
+            return;
+        }
+
+        const validPassword = dbUserData.checkPassword(req.body.password);
+
+        if (!validPassword) {
+            res.status(400).json({ message: 'Incorrect password!' });
+            return;
+        }
+
+        req.session.save(() => {
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
+            req.session.loggedIn = true;
+
+            res.json({ user: dbUserData, message: 'You are now logged in!' });
+        });
+    });
+});
+
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
@@ -86,6 +115,7 @@ router.post('/logout', (req, res) => {
     }
 });
 
+
 //POST signup
 router.post('/', (req, res) => {
     User.create({
@@ -93,20 +123,20 @@ router.post('/', (req, res) => {
         email: req.body.email,
         password: req.body.password
     })
-    .then(dbUserData => {
-        req.session.save(() => {
-            req.session.user_id = dbUserData.id;
-            req.session.username = dbUserData.username;
-            req.session.loggedIn = true;
+        .then(dbUserData => {
+            req.session.save(() => {
+                req.session.user_id = dbUserData.id;
+                req.session.username = dbUserData.username;
+                req.session.loggedIn = true;
 
-            res.json(dbUserData);
+                res.json(dbUserData);
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
         });
-    })
-    .catch(err=> {
-        console.log(err);
-        res.status(500).json(err);
-    });
- });
+});
 
 //Put APIs and users
 
@@ -117,19 +147,19 @@ router.put('/:id', withAuth, (req, res) => {
             id: req.params.id
         }
     })
-    .then(dbUserData => {
-        if (!dbUserData[0]) {
-            res.status(404).json({ message: 'No user found with this ide"'});
-            return;
-        }
-        res.json(dbUserData);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+        .then(dbUserData => {
+            if (!dbUserData[0]) {
+                res.status(404).json({ message: 'No user found with this ide"' });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
-    
+
 //DELETE apis and users
 router.delete('/:id', withAuth, (req, res) => {
     User.destroy({
@@ -137,17 +167,17 @@ router.delete('/:id', withAuth, (req, res) => {
             id: req.params.id
         }
     })
-    .then(dbUserData => {
-        if (!dbUserData){
-            res.status(404).json({ messgae: 'No user found with this id'});
-            return;
-        }
-        res.json(dbUserData);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+        .then(dbUserData => {
+            if (!dbUserData) {
+                res.status(404).json({ messgae: 'No user found with this id' });
+                return;
+            }
+            res.json(dbUserData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 module.exports = router;

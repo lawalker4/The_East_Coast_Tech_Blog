@@ -7,7 +7,7 @@ const withAuth = require('../utils/auth');
 router.get('/', withAuth, (req, res) => {
   Post.findAll({
     where: {
-      user_id: req.session.user_if
+      user_id: req.session.user_id
     },
     attributes: [
       'id',
@@ -18,7 +18,7 @@ router.get('/', withAuth, (req, res) => {
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'create_at'],
+        attributes: ['id', 'comment_text', 'post_id', 'user_id'],
         include: {
           model: User,
           attributes: ['username']
@@ -32,7 +32,7 @@ router.get('/', withAuth, (req, res) => {
   })
     .then(dbPostData => {
       const posts = dbPostData.map(post => post.get({ plain: true }));
-      res.render('dashboard', { post, loggedIn: true });
+      res.render('dashboard', { posts, loggedIn: true });
     })
     .catch(err => {
       console.log(err);
@@ -51,7 +51,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
     include: [
       {
         model: Comment,
-        attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+        attributes: ['id', 'comment_text', 'post_id', 'user_id'],
         include: {
           model: User,
           attributes: ['username']
