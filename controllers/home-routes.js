@@ -10,12 +10,11 @@ router.get('/', (req, res) => {
             'id',
             'post_text',
             'title',
-            'created_at',
         ],
         include: [
             {
                 model: Comment,
-                attributes: ['id', 'comment_text', 'post_id', 'user_id', 'create_at'],
+                attributes: ['id', 'comment_text', 'post_id', 'user_id'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -29,7 +28,8 @@ router.get('/', (req, res) => {
     })
         .then(dbPostData => {
             const posts = dbPostData.map(post => post.get({ plain: true }));
-            res.render('homepage', { post, loggedIn: req.session.loggedIn });
+            console.log(posts)
+            res.render('homepage', { posts, loggedIn: req.session.loggedIn });
         })
         .catch(err => {
             console.log(err);
