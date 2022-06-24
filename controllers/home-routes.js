@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const sequelize = require('/urcoding/projects/The_East_Coast_Tech_Blog/config/connections');
-const { Post, User, Comment } = require('/urcoding/projects/The_East_Coast_Tech_Blog/models');
+const sequelize = require('../config/connections');
+const { Post, User, Comment } = require('../models');
 
 //get post for homepage
 router.get('/', (req, res) => {
@@ -92,15 +92,6 @@ router.get('/post/:id', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
-});
-
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-
-    res.render('login');
 });
 
 module.exports = router;
