@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connections');
-const { beforeCreate } = require('./Post');
 
 //create our User model
 class User extends Model {
@@ -13,16 +12,19 @@ class User extends Model {
 //create fields/columns for user model
 User.init(
     {
+        //to create user id
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
+        //to create user username
         username: {
             type: DataTypes.STRING,
             allowNull: false
         },
+        //to create user email
         email: {
             type: DataTypes.STRING,
             allowNull: false,
