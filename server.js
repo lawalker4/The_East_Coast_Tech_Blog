@@ -34,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //turn onroutes
 app.use(require('./controllers/'));
+app.use(routes);
 
 //turn on connection to db and server
 sequelize.sync({ force:false }).then(() => {
