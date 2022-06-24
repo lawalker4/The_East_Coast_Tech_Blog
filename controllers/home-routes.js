@@ -74,7 +74,7 @@ router.get('/post/:id', (req, res) => {
             }
         ]
     })
-    
+
     then(dbPostData => {
         if (!dbPostData) {
             res.status(404).json({ message: 'No post found with this id' });
@@ -92,16 +92,16 @@ router.get('/post/:id', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
-    });
+});
 
-        router.get('/login', (req, res) => {
-            if (req.session.loggedIn) {
-            res.redirect('/');
-            return;
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
     }
 
-        res.render('login');
-    });
+    res.render('login');
+});
 
 module.exports = router;
 
