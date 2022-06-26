@@ -82,25 +82,18 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 [express-session](https://www.npmjs.com/package/express-session)
 
 [Heroku](www.heroku.com)
+
 ---
 
 ### Usage
 
-To run application take the following steps:
-1. Clone repo to your computer.
-2. Install and run express.js by running npm install expess.
-3. After saving code run npm start.
-4. Run npm start seed
-5. Open new live server and type in localhost:3001 in Insomnia
-5. Go through the different folders and to run Put, Post and Delete option
+Click here to use this application, powered by Heroku.
 
 ---
 
 ### Screenshot
-:movie_camera:	
-[Demo Video]()
 
-![Screenshot](./images/Screenshot%201.PNG)
+![Screenshot](./images/Screenshot.PNG)
 
 ---
 
