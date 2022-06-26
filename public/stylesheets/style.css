@@ -2,29 +2,66 @@
   box-sizing: border-box;
 }
 
-body,
-html {
+body,html {
   height: 100%;
   padding: 0;
   margin: 0;
   font-family: "Josefin Sans", sans-serif;
   font-family: "Martel", serif;
-  color: blue;
+  color: black;
+  background-color: gainsboro;
 }
 
 a {
   text-decoration: none;
-  /* font-family: "Josefin Sans", sans-serif;
-  font-family: "Martel", serif;
-  font-weight: bold;
-  color: navy;
-  font-size: 28px; */
+  color: rgb(27, 83, 27);
+  font-weight: 600;
+  margin: 10px;
 }
 
 form label {
   display: block;
 }
 
+p {
+  font-weight: 400px;
+  font-size: 15px;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 5px;
+  padding: 1%;
+  font-weight: bold;
+ }
+
+ .create-btn:hover{
+  color: #3486eb
+ }
+
+ button:hover{
+  background-color: #3486eb;
+ }
+
+ form > div {
+  margin-bottom: 2%;
+ }
+
+ form label {
+  display: block;
+ }
+
+ textarea {
+  min-width: 80%;
+  min-height: 100px;
+ }
+
+ textarea, input {
+  padding: 1%;
+  border-radius: 5px;
+
+ }
 .wrapper {
   width: 100%;
   min-height: 100%;
@@ -44,7 +81,7 @@ header {
 
 header h1 {
   font-weight: bold;
-  font-size: large;
+  font-size: 25pt;
   color: blue;
   font: optional;
 }
@@ -54,17 +91,23 @@ main {
   padding: 2% 4%;
 }
 
+nav {
+  font-size: 18pt;
+}
+
 .btn-no-style {
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
   text-decoration: none;
-  color: #225ca3;
+  color: rgb(27, 83, 27);
   font-size: 100%;
   font-weight: bold;
   transition: color 0.1s;
   margin-left: 16px;
+  font-family: "Josefin Sans", sans-serif;
+  font-family: "Martel", serif;
 }
 
 .btn-no-style:hover {
@@ -82,6 +125,8 @@ main {
 .post {
   margin-bottom: 2%;
   line-height: 150%;
+  font-family: "Josefin Sans", sans-serif;
+  font-family: "Martel", serif;
 }
 
 .post .title span {
