@@ -87,7 +87,7 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 
 ### Usage
 
-Click here to use this application, powered by Heroku.
+[Click here](https://fast-journey-80695.herokuapp.com/) to use this application, powered by Heroku.
 
 ---
 
