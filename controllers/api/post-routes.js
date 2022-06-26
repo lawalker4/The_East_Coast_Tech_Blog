@@ -111,8 +111,10 @@ router.put('/:id', withAuth, (req, res) => {
             res.status(500).json(err);
         });
 
-}); ('/:id', withAuth, (req, res) => {
-    Post.destory({
+});
+
+router.delete('/:id', withAuth, (req, res) => {
+    Post.destroy({
         where: {
             id: req.params.id
         }

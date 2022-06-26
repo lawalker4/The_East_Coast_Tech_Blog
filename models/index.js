@@ -6,7 +6,8 @@ const { post } = require('../controllers/api');
 
 //create associations
 User.hasMany(Post, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
+    onDelete:"cascade",
 });
 
 Post.belongsTo(User, {
@@ -19,13 +20,16 @@ Comment.belongsTo(User, {
 
 Comment.belongsTo(Post, {
     foreignKey: 'post_id',
+    onDelete: "cascade",
 });
 
 User.hasMany(Comment, {
     foreignKey: 'user_id',
+    onDelete: "cascade",
 })
 Post.hasMany(Comment, {
-    foreignKey: 'post_id'
+    foreignKey: 'post_id',
+    onDelete: "cascade",
 });
 
 module.exports = {User, Post, Comment};
