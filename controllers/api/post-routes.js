@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const sequelize = require('/urcoding/projects/The_East_Coast_Tech_Blog/config/connections');
-const { Post, User, Comment } = require('/urcoding/projects/The_East_Coast_Tech_Blog/models');
-const withAuth = require('/urcoding/projects/The_East_Coast_Tech_Blog/utils/auth');
+const sequelize = require('../config/connections');
+const { User, Post, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 //get for all users
 router.get('/', (req, res) => {
