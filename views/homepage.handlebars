@@ -1,7 +1,10 @@
+<!-- homepage for the user to access all of the posts -->
 <ol class="post-list">
-    {{#each postS as |post|}}
+    {{#each posts as |post|}}
     <li>
-        {{>post-info post }}
+        <div>
+           {{>post-info post}}
+        </div>       
     </li>
     {{/each}}
 </ol>
